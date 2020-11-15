@@ -4,15 +4,26 @@ import { CurrentUserContext } from "../CurrentUserContext";
 import { COLORS } from "../constants";
 
 const HomeTweetBox = () => {
-  const { currentUser, status } = useContext(CurrentUserContext);
+  const { currentUser, status, setSentTweet } = useContext(CurrentUserContext);
 
   const [value, setValue] = useState("");
 
-  const handleSubmit = () => {
-    return;
+  const handleSubmit = (e) => {
+    console.log("nop");
+    fetch("/api/tweet", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        status: value,
+      }),
+    });
+
+    setValue("");
   };
 
-  console.log(currentUser);
   return (
     <Wrapper>
       {status === "loading" && <div>loading...</div>}
@@ -34,7 +45,7 @@ const HomeTweetBox = () => {
           </TextDiv>
           <CharAndSendDiv>
             <Chars>{300 - value.length}</Chars>
-            <SendButton>Meow</SendButton>
+            <SendButton onClick={(e) => handleSubmit(e)}>Meow</SendButton>
           </CharAndSendDiv>
         </>
       )}
