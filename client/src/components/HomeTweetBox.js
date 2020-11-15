@@ -11,7 +11,6 @@ const HomeTweetBox = () => {
   const [value, setValue] = useState("");
 
   const handleSubmit = (e) => {
-    console.log("nop");
     fetch("/api/tweet", {
       method: "POST",
       headers: {
@@ -68,6 +67,8 @@ const Wrapper = styled.div`
   border-bottom: 4px solid lightgray;
   display: flex;
   margin-bottom: 12px;
+  width: 100%;
+  padding: 20px 24px;
 `;
 
 const PicDiv = styled.div``;
@@ -79,15 +80,25 @@ const Pic = styled.img`
   margin: 10px;
 `;
 
-const TextDiv = styled.div``;
+const TextDiv = styled.div`
+  width: 100%;
+`;
 
 const Input = styled.textarea`
   width: 100%;
   height: 150px;
+  outline: none;
+  resize: none;
+  border: none;
+  border-radius: 20px;
+  padding: 10px;
+  font-size: 24px;
 `;
 
 const CharAndSendDiv = styled.div`
   padding: 10px;
+  display: flex;
+  align-items: center;
 `;
 
 const Chars = styled.span`
@@ -110,6 +121,7 @@ const SendButton = styled.button`
   padding: 10px 20px;
   font-size: 18px;
   margin-left: 10px;
+  height: 50px;
 `;
 
 export default HomeTweetBox;

@@ -19,7 +19,6 @@ const TweetDetails = () => {
         .then((res) => res.json())
         .then((data) => {
           setTweet(data.tweet);
-          console.log(data);
         })
         .then(() => setLoadStatus("loaded"));
     } else {
@@ -34,7 +33,7 @@ const TweetDetails = () => {
   const tweetTimeStamp = moment(tweet?.timestamp).format(
     "hh:mm A [●] MMM D YYYY"
   );
-  console.log(tweet);
+
   return (
     <Wrapper>
       {loadStatus === "loaded" && (
@@ -52,8 +51,9 @@ const TweetDetails = () => {
           <TweetContent>
             <Status>{tweet.status}</Status>
             <TweetPicture src={tweet.media[0]?.url} alt={`tweet picture`} />
-            <TimePosted> {tweetTimeStamp} ● critter web app</TimePosted>
           </TweetContent>
+          <TimePosted> {tweetTimeStamp} ● critter web app</TimePosted>
+
           <ActionBar />
         </TweetWrapper>
       )}

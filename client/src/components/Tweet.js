@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { CurrentUserContext, CurrentUserProvider } from "../CurrentUserContext";
 import ActionBar from "./ActionBar.js";
 import moment from "moment";
+import { FiRepeat } from "react-icons/fi";
 
 const Tweet = ({ tweet, feedLoadStatus }) => {
   let history = useHistory();
@@ -13,11 +14,15 @@ const Tweet = ({ tweet, feedLoadStatus }) => {
 
   const handleProfileClick = (e) => {
     e.stopPropagation();
+
     history.push(`/${tweet.author.handle}`);
   };
 
   const handleTweetClick = (e) => {
-    history.push(`/tweet/${tweet.id}`);
+    console.log(tweet);
+    console.log(tweet.retweetFrom.displayName);
+    console.log(tweet.isRetweeted);
+    // history.push(`/tweet/${tweet.id}`);
   };
 
   return (
@@ -28,6 +33,12 @@ const Tweet = ({ tweet, feedLoadStatus }) => {
     >
       {feedLoadStatus === "loaded" && (
         <>
+          {tweet.retweetFrom && (
+            <RetweetDiv>
+              <FiRepeat />
+              <Remeowed>{tweet.retweetFrom.displayName} Remeowed</Remeowed>
+            </RetweetDiv>
+          )}
           <TweetWrapper>
             <ProfilePicture
               src={tweet?.author.avatarSrc}
@@ -73,6 +84,17 @@ const Wrapper = styled.div`
   padding: 8px 20px;
 `;
 
+const RetweetDiv = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: 32px;
+`;
+
+const Remeowed = styled.span`
+  color: gray;
+  margin-left: 8px;
+`;
+
 const TweetWrapper = styled.div`
   display: flex;
   padding: 8px 0;
@@ -110,7 +132,7 @@ const Handle = styled.span`
 `;
 
 const Status = styled.p`
-  margin-bottom: 6px;
+  margin: 6px 0;
 `;
 
 const TweetPicture = styled.img`

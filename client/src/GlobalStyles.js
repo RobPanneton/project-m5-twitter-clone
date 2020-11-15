@@ -6,6 +6,7 @@ export default createGlobalStyle`
   *:after {
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
+	font-family: sans-serif;
   }
 
   html, body, div, span, applet, object, iframe,
@@ -25,7 +26,6 @@ time, mark, audio, video {
 	padding: 0;
 	border: 0;
 	font-size: 100%;
-	font: sans-serif;
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
