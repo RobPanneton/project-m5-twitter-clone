@@ -16,25 +16,51 @@ const HomeTweetBox = () => {
 
   const [value, setValue] = useState("");
 
-  const handleSubmit = (e) => {
-    fetch("/api/tweet", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        status: value,
-      }),
-    })
-      .then(() => {
-        setExecuteTweet(executeTweet + 1);
+  const handleSubmitEnter = (e) => {
+    if (e.key === "Enter") {
+      fetch("/api/tweet", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          status: value,
+        }),
       })
-      .catch((err) => {
-        setStatus(true);
-      });
+        .then(() => {
+          setExecuteTweet(executeTweet + 1);
+        })
+        .catch((err) => {
+          setStatus(true);
+        });
 
-    setValue("");
+      setValue("");
+    }
+  };
+
+  const handleSubmit = (e) => {
+    console.log(e);
+    if (e.type === "click") {
+      fetch("/api/tweet", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          status: value,
+        }),
+      })
+        .then(() => {
+          setExecuteTweet(executeTweet + 1);
+        })
+        .catch((err) => {
+          setStatus(true);
+        });
+
+      setValue("");
+    }
   };
 
   const charCount = 300 - value.length;
@@ -43,7 +69,7 @@ const HomeTweetBox = () => {
     return <ErrorPage />;
   }
   return (
-    <Wrapper>
+    <Wrapper tabIndex={0}>
       {status === "loading" && <Spinner />}
       {status === "loaded" && (
         <>
@@ -53,6 +79,7 @@ const HomeTweetBox = () => {
           </PicDiv>
           <TextDiv>
             <Input
+              tabIndex={0}
               type="text"
               placeholder="What's happening?"
               value={value}
@@ -62,12 +89,32 @@ const HomeTweetBox = () => {
             ></Input>
           </TextDiv>
           <CharAndSendDiv>
-            {charCount > 55 && <Chars className="green">{charCount}</Chars>}
+            {charCount > 55 && charCount < 300 && (
+              <Chars className="green">{charCount}</Chars>
+            )}
             {charCount <= 55 && charCount >= 0 && (
               <Chars className="yellow">{charCount}</Chars>
             )}
-            {charCount < 0 && <Chars className="red">{charCount}</Chars>}
-            <SendButton onClick={(e) => handleSubmit(e)}>Meow</SendButton>
+            {(charCount < 0 || charCount === 300) && (
+              <Chars className="red">{charCount}</Chars>
+            )}
+
+            {charCount > 0 && charCount < 300 ? (
+              <>
+                {" "}
+                <SendButton
+                  onKeyDown={(e) => handleSubmitEnter(e)}
+                  onClick={(e) => handleSubmit(e)}
+                  tabIndex={0}
+                >
+                  Meow
+                </SendButton>
+              </>
+            ) : (
+              <>
+                <SendButton className="blocked">Meow</SendButton>
+              </>
+            )}
           </CharAndSendDiv>
         </>
       )}
@@ -126,7 +173,7 @@ const Chars = styled.span`
   }
 `;
 
-const SendButton = styled.button`
+const SendButton = styled.div`
   background-color: ${COLORS.primary};
   color: white;
   border: none;
@@ -135,6 +182,14 @@ const SendButton = styled.button`
   font-size: 18px;
   margin-left: 10px;
   height: 50px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+
+  &.blocked {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
 `;
 
 export default HomeTweetBox;

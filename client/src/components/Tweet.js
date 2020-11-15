@@ -31,8 +31,6 @@ const Tweet = ({ tweet, feedLoadStatus }) => {
     history.push(`/tweet/${tweet.id}`);
   };
   const handleTweetEnter = (e) => {
-    console.log(e);
-    console.log(e.key);
     if (e.key === "Enter") {
       history.push(`/tweet/${tweet.id}`);
     }
