@@ -24,7 +24,7 @@ const Sidebar = () => {
         </NavigLink>
       </NavDiv>
       <NavDiv>
-        <NavigLink to={`/treasurymog`}>
+        <NavigLink to={`/me`}>
           <FiUser />
           <NavItem>Profile</NavItem>
         </NavigLink>

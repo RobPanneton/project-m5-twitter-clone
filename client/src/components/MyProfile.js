@@ -7,7 +7,7 @@ import { COLORS } from "../constants";
 import Feed from "./Feed";
 import { Spinner } from "./Spinner";
 
-const Profile = () => {
+const MyProfile = () => {
   const { currentUser, status } = useContext(CurrentUserContext);
   const [profile, setProfile] = useState();
   const [loadStatus, setLoadStatus] = useState("loading");
@@ -15,7 +15,7 @@ const Profile = () => {
 
   useEffect(() => {
     const ac = new AbortController();
-    fetch(`/api/${profileId}/profile`)
+    fetch(`/api/me/profile`)
       .then((res) => res.json())
       .then((data) => {
         setProfile(data.profile);
@@ -32,46 +32,44 @@ const Profile = () => {
       {/* {loadStatus === "loading" && <Spinner />} */}
       {loadStatus === "loaded" && (
         <>
-          <ContentWrapper>
-            <BannerPhoto
-              src={profile.bannerSrc}
-              alt={`${profile.handle}'s banner photo`}
-            />
-            <ProfilePicture
-              src={profile.avatarSrc}
-              alt={`${profile.handle}'s profile photo`}
-            />
-            <ProfileUserInfo>
-              <NameAndHandle>
-                <Name>{profile.displayName}</Name>
-                <Handle>@{profile.handle}</Handle>
-              </NameAndHandle>
-              <Bio>{profile.bio}</Bio>
-              <LocationAndJoined>
-                <Location>
-                  <FiMapPin />
-                  <LocJoinInfo> {profile.location}</LocJoinInfo>
-                </Location>
-                <Joined>
-                  <FiCalendar />
-                  <LocJoinInfo> Joined {profile.joined}</LocJoinInfo>
-                </Joined>
-              </LocationAndJoined>
-              <FollowingAndFollowers>
-                <Following>
-                  <strong>{profile.numFollowing}</strong> Following
-                </Following>
-                <p>
-                  <strong>{profile.numFollowers}</strong> Followers
-                </p>
-              </FollowingAndFollowers>
-            </ProfileUserInfo>
-            <TabContainer>
-              <Tab>Tweets</Tab>
-              <Tab>Media</Tab>
-              <Tab>Likes</Tab>
-            </TabContainer>
-          </ContentWrapper>
+          <BannerPhoto
+            src={profile.bannerSrc}
+            alt={`${profile.handle}'s banner photo`}
+          />
+          <ProfilePicture
+            src={profile.avatarSrc}
+            alt={`${profile.handle}'s profile photo`}
+          />
+          <ProfileUserInfo>
+            <NameAndHandle>
+              <Name>{profile.displayName}</Name>
+              <Handle>@{profile.handle}</Handle>
+            </NameAndHandle>
+            <Bio>{profile.bio}</Bio>
+            <LocationAndJoined>
+              <Location>
+                <FiMapPin />
+                <LocJoinInfo> {profile.location}</LocJoinInfo>
+              </Location>
+              <Joined>
+                <FiCalendar />
+                <LocJoinInfo> Joined {profile.joined}</LocJoinInfo>
+              </Joined>
+            </LocationAndJoined>
+            <FollowingAndFollowers>
+              <Following>
+                <strong>{profile.numFollowing}</strong> Following
+              </Following>
+              <p>
+                <strong>{profile.numFollowers}</strong> Followers
+              </p>
+            </FollowingAndFollowers>
+          </ProfileUserInfo>
+          <TabContainer>
+            <Tab>Tweets</Tab>
+            <Tab>Media</Tab>
+            <Tab>Likes</Tab>
+          </TabContainer>
           <Feed />
         </>
       )}
@@ -88,8 +86,6 @@ const ProfileUserInfo = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
-const ContentWrapper = styled.div``;
 
 const ProfilePicture = styled.img`
   border-radius: 50%;
@@ -177,4 +173,4 @@ const Tab = styled.div`
   }
 `;
 
-export default Profile;
+export default MyProfile;
