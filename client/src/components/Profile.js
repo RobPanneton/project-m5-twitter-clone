@@ -35,7 +35,7 @@ const Profile = () => {
 
   return (
     <Wrapper>
-      {/* {loadStatus === "loading" && <Spinner />} */}
+      {loadStatus === "loading" && <Spinner />}
       {loadStatus === "loaded" && (
         <>
           <ContentWrapper>

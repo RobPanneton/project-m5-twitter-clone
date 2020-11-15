@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { CurrentUserContext } from "../CurrentUserContext";
 import { COLORS } from "../constants";
 import ErrorPage from "./ErrorPage";
+import { Spinner } from "./Spinner";
 
 const HomeTweetBox = () => {
   const {
@@ -43,7 +44,7 @@ const HomeTweetBox = () => {
   }
   return (
     <Wrapper>
-      {status === "loading" && <div>loading...</div>}
+      {status === "loading" && <Spinner />}
       {status === "loaded" && (
         <>
           {" "}

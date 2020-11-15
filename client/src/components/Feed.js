@@ -18,7 +18,7 @@ const Feed = () => {
   const [feed, setFeed] = useState();
   const [tweetIds, setTweetIds] = useState();
   const [tweetsById, setTweetsById] = useState();
-  const [feedLoadStatus, setFeedLoadStatus] = useState("laoding");
+  const [feedLoadStatus, setFeedLoadStatus] = useState("loading");
   let { profileId } = useParams();
 
   useEffect(() => {
@@ -55,7 +55,7 @@ const Feed = () => {
   }
   return (
     <Wrapper>
-      {/* {feedLoadStatus === "loading" && <Spinner />} */}
+      {feedLoadStatus === "loading" && <Spinner />}
       {feedLoadStatus === "loaded" &&
         tweetIds?.map((Id) => {
           return (

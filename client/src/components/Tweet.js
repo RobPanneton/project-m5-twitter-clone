@@ -14,15 +14,16 @@ const Tweet = ({ tweet, feedLoadStatus }) => {
 
   const handleProfileClick = (e) => {
     e.stopPropagation();
-    window.scrollTo(0, 0);
+
     history.push(`/${tweet.author.handle}`);
+    window.scrollTo(0, 0);
   };
 
   const handleProfileEnter = (e) => {
     e.stopPropagation();
     if (e.key === "Enter") {
-      window.scrollTo(0, 0);
       history.push(`/${tweet.author.handle}`);
+      window.scrollTo(0, 0);
     }
   };
 

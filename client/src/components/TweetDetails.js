@@ -5,6 +5,7 @@ import { CurrentUserContext } from "../CurrentUserContext";
 import ActionBar from "./ActionBar.js";
 import moment from "moment";
 import ErrorPage from "./ErrorPage";
+import { Spinner } from "./Spinner";
 
 const TweetDetails = () => {
   const [tweet, setTweet] = useState();
@@ -42,6 +43,7 @@ const TweetDetails = () => {
 
   return (
     <Wrapper tabIndex={0}>
+      {loadStatus === "loading" && <Spinner />}
       {loadStatus === "loaded" && (
         <TweetWrapper>
           <UserInfo>
