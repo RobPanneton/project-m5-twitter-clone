@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { CurrentUserContext, CurrentUserProvider } from "../CurrentUserContext";
@@ -6,10 +7,25 @@ import ActionBar from "./ActionBar.js";
 import moment from "moment";
 
 const Tweet = ({ tweet, feedLoadStatus }) => {
+  let history = useHistory();
+
   const tweetTimeStamp = moment(tweet?.timestamp).format("MMM Do");
 
+  const handleProfileClick = (e) => {
+    e.stopPropagation();
+    history.push(`/${tweet.author.handle}`);
+  };
+
+  const handleTweetClick = (e) => {
+    history.push(`/tweet/${tweet.id}`);
+  };
+
   return (
-    <Wrapper>
+    <Wrapper
+      onClick={(e) => {
+        handleTweetClick(e);
+      }}
+    >
       {feedLoadStatus === "loaded" && (
         <>
           <TweetWrapper>
@@ -20,7 +36,13 @@ const Tweet = ({ tweet, feedLoadStatus }) => {
             <RestOfTweetWrap>
               <UserInfo>
                 <TweeterInfo>
-                  <DisplayName>{tweet?.author.displayName}</DisplayName>
+                  <DisplayName
+                    onClick={(e) => {
+                      handleProfileClick(e);
+                    }}
+                  >
+                    {tweet?.author.displayName}
+                  </DisplayName>
                   <Handle>
                     @{tweet?.author.handle} ● {tweetTimeStamp}
                   </Handle>
