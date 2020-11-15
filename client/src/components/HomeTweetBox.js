@@ -2,11 +2,16 @@ import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { CurrentUserContext } from "../CurrentUserContext";
 import { COLORS } from "../constants";
+import ErrorPage from "./ErrorPage";
 
 const HomeTweetBox = () => {
-  const { currentUser, status, executeTweet, setExecuteTweet } = useContext(
-    CurrentUserContext
-  );
+  const {
+    currentUser,
+    status,
+    setStatus,
+    executeTweet,
+    setExecuteTweet,
+  } = useContext(CurrentUserContext);
 
   const [value, setValue] = useState("");
 
@@ -20,15 +25,22 @@ const HomeTweetBox = () => {
       body: JSON.stringify({
         status: value,
       }),
-    }).then(() => {
-      setExecuteTweet(executeTweet + 1);
-    });
+    })
+      .then(() => {
+        setExecuteTweet(executeTweet + 1);
+      })
+      .catch((err) => {
+        setStatus(true);
+      });
 
     setValue("");
   };
 
   const charCount = 300 - value.length;
 
+  if (status === "error") {
+    return <ErrorPage />;
+  }
   return (
     <Wrapper>
       {status === "loading" && <div>loading...</div>}

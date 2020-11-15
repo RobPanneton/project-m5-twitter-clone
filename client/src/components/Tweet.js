@@ -14,13 +14,14 @@ const Tweet = ({ tweet, feedLoadStatus }) => {
 
   const handleProfileClick = (e) => {
     e.stopPropagation();
-
+    window.scrollTo(0, 0);
     history.push(`/${tweet.author.handle}`);
   };
 
   const handleProfileEnter = (e) => {
     e.stopPropagation();
     if (e.key === "Enter") {
+      window.scrollTo(0, 0);
       history.push(`/${tweet.author.handle}`);
     }
   };
@@ -48,10 +49,10 @@ const Tweet = ({ tweet, feedLoadStatus }) => {
     >
       {feedLoadStatus === "loaded" && (
         <>
-          {tweet.retweetFrom && (
+          {tweet?.retweetFrom && (
             <RetweetDiv>
               <FiRepeat />
-              <Remeowed>{tweet.retweetFrom.displayName} Remeowed</Remeowed>
+              <Remeowed>{tweet?.retweetFrom.displayName} Remeowed</Remeowed>
             </RetweetDiv>
           )}
           <TweetWrapper>

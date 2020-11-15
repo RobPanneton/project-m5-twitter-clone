@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import Feed from "./Feed";
 import HomeTweetBox from "./HomeTweetBox";
+import { CurrentUserContext } from "../CurrentUserContext";
+import ErrorPage from "./ErrorPage";
 
 const HomeFeed = () => {
+  const { status } = useContext(CurrentUserContext);
+
+  if (status === "error") {
+    return <ErrorPage />;
+  }
+
   return (
     <HomeWrapper>
       <HomeText>

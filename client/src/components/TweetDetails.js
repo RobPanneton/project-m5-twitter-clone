@@ -4,12 +4,13 @@ import { useParams } from "react-router-dom";
 import { CurrentUserContext } from "../CurrentUserContext";
 import ActionBar from "./ActionBar.js";
 import moment from "moment";
+import ErrorPage from "./ErrorPage";
 
 const TweetDetails = () => {
   const [tweet, setTweet] = useState();
   const [loadStatus, setLoadStatus] = useState("loading");
   const { tweetId } = useParams();
-  const { currentUser } = useContext(CurrentUserContext);
+  const { currentUser, status, setStatus } = useContext(CurrentUserContext);
 
   useEffect(() => {
     const ac = new AbortController();
@@ -20,7 +21,8 @@ const TweetDetails = () => {
         .then((data) => {
           setTweet(data.tweet);
         })
-        .then(() => setLoadStatus("loaded"));
+        .then(() => setLoadStatus("loaded"))
+        .catch((err) => setStatus("error"));
     } else {
       return;
     }
@@ -34,8 +36,12 @@ const TweetDetails = () => {
     "hh:mm A [●] MMM D YYYY"
   );
 
+  if (status === "error") {
+    return <ErrorPage />;
+  }
+
   return (
-    <Wrapper>
+    <Wrapper tabIndex={0}>
       {loadStatus === "loaded" && (
         <TweetWrapper>
           <UserInfo>
@@ -44,7 +50,7 @@ const TweetDetails = () => {
               alt={`${tweet.handle}'s profile photo`}
             />
             <TweeterInfo>
-              <DisplayName>{tweet.author.displayName}</DisplayName>
+              <DisplayName tabIndex={0}>{tweet.author.displayName}</DisplayName>
               <Handle>@{tweet.author.handle}</Handle>
             </TweeterInfo>
           </UserInfo>

@@ -6,9 +6,10 @@ import { FiMapPin, FiCalendar } from "react-icons/fi";
 import { COLORS } from "../constants";
 import Feed from "./Feed";
 import { Spinner } from "./Spinner";
+import ErrorPage from "./ErrorPage";
 
 const Profile = () => {
-  const { currentUser, status } = useContext(CurrentUserContext);
+  const { currentUser, status, setStatus } = useContext(CurrentUserContext);
   const [profile, setProfile] = useState();
   const [loadStatus, setLoadStatus] = useState("loading");
   const { profileId } = useParams();
@@ -20,12 +21,17 @@ const Profile = () => {
       .then((data) => {
         setProfile(data.profile);
       })
-      .then(() => setLoadStatus("loaded"));
+      .then(() => setLoadStatus("loaded"))
+      .catch((err) => setStatus("error"));
 
     return () => {
       ac.abort();
     };
   }, [profileId]);
+
+  if (status === "error") {
+    return <ErrorPage />;
+  }
 
   return (
     <Wrapper>
