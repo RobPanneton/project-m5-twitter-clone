@@ -5,11 +5,13 @@ import TweetActionIcon from "./TweetActionIcon";
 import LikeButton from "../LikeButton";
 
 const ActionBar = ({ tweet }) => {
-  const [optimisticLike, setOptimisticLike] = useState(tweet.isLiked);
-  const [optimisticNumLikes, setOptimisticNumLikes] = useState(tweet.numLikes);
-  const [optimisticRetweet, setOptimisticRetweet] = useState(tweet.isRetweeted);
+  const [optimisticLike, setOptimisticLike] = useState(tweet?.isLiked);
+  const [optimisticNumLikes, setOptimisticNumLikes] = useState(tweet?.numLikes);
+  const [optimisticRetweet, setOptimisticRetweet] = useState(
+    tweet?.isRetweeted
+  );
   const [optimisticNumRetweets, setOptimisticNumRetweets] = useState(
-    tweet.numRetweets
+    tweet?.numRetweets
   );
 
   const handleLikeClick = async (id) => {

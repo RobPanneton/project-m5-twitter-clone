@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { CurrentUserContext } from "../CurrentUserContext";
 import ActionBar from "./ActionBar.js";
+import moment from "moment";
+
 const TweetDetails = () => {
   const [tweet, setTweet] = useState();
   const [loadStatus, setLoadStatus] = useState("loading");
@@ -29,12 +31,14 @@ const TweetDetails = () => {
     };
   }, []);
 
+  const tweetTimeStamp = moment(tweet?.timestamp).format(
+    "hh:mm A [●] MMM D YYYY"
+  );
   console.log(tweet);
-
   return (
     <Wrapper>
       {loadStatus === "loaded" && (
-        <>
+        <TweetWrapper>
           <UserInfo>
             <ProfilePicture
               src={tweet.author.avatarSrc}
@@ -47,11 +51,11 @@ const TweetDetails = () => {
           </UserInfo>
           <TweetContent>
             <Status>{tweet.status}</Status>
-            <TweetPicture src={tweet.media[0].url} alt={`tweet picture`} />
-            <TimePosted> {tweet.timestamp}</TimePosted>
+            <TweetPicture src={tweet.media[0]?.url} alt={`tweet picture`} />
+            <TimePosted> {tweetTimeStamp} ● critter web app</TimePosted>
           </TweetContent>
           <ActionBar />
-        </>
+        </TweetWrapper>
       )}
     </Wrapper>
   );
@@ -60,6 +64,8 @@ const TweetDetails = () => {
 const Wrapper = styled.div`
   margin: 5px;
 `;
+
+const TweetWrapper = styled.div``;
 
 const UserInfo = styled.div`
   display: flex;
@@ -84,7 +90,9 @@ const DisplayName = styled.h1``;
 
 const Handle = styled.span``;
 
-const TimePosted = styled.span``;
+const TimePosted = styled.span`
+  color: gray;
+`;
 
 const Status = styled.p``;
 

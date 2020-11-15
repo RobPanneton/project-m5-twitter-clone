@@ -24,6 +24,8 @@ const HomeTweetBox = () => {
     setValue("");
   };
 
+  const charCount = 300 - value.length;
+
   return (
     <Wrapper>
       {status === "loading" && <div>loading...</div>}
@@ -44,7 +46,11 @@ const HomeTweetBox = () => {
             ></Input>
           </TextDiv>
           <CharAndSendDiv>
-            <Chars>{300 - value.length}</Chars>
+            {charCount > 55 && <Chars className="green">{charCount}</Chars>}
+            {charCount <= 55 && charCount >= 0 && (
+              <Chars className="yellow">{charCount}</Chars>
+            )}
+            {charCount < 0 && <Chars className="red">{charCount}</Chars>}
             <SendButton onClick={(e) => handleSubmit(e)}>Meow</SendButton>
           </CharAndSendDiv>
         </>
@@ -57,6 +63,7 @@ const Wrapper = styled.div`
   height: 200px;
   border-bottom: 4px solid lightgray;
   display: flex;
+  margin-bottom: 12px;
 `;
 
 const PicDiv = styled.div``;
@@ -79,7 +86,17 @@ const CharAndSendDiv = styled.div`
   padding: 10px;
 `;
 
-const Chars = styled.span``;
+const Chars = styled.span`
+  &.green {
+    color: green;
+  }
+  &.red {
+    color: red;
+  }
+  &.yellow {
+    color: yellow;
+  }
+`;
 
 const SendButton = styled.button`
   background-color: ${COLORS.primary};

@@ -3,8 +3,11 @@ import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { CurrentUserContext, CurrentUserProvider } from "../CurrentUserContext";
 import ActionBar from "./ActionBar.js";
+import moment from "moment";
 
 const Tweet = ({ tweet, feedLoadStatus }) => {
+  const tweetTimeStamp = moment(tweet.timestamp).format("MMM Do");
+
   return (
     <Wrapper>
       {feedLoadStatus === "loaded" && (
@@ -18,7 +21,9 @@ const Tweet = ({ tweet, feedLoadStatus }) => {
               <UserInfo>
                 <TweeterInfo>
                   <DisplayName>{tweet.author.displayName}</DisplayName>
-                  <Handle>@{tweet.author.handle}</Handle>
+                  <Handle>
+                    @{tweet.author.handle} ● {tweetTimeStamp}
+                  </Handle>
                 </TweeterInfo>
               </UserInfo>
               <TweetContent>
@@ -31,7 +36,6 @@ const Tweet = ({ tweet, feedLoadStatus }) => {
                   />
                 )}
               </TweetContent>
-              <TimePosted> {tweet.timestamp}</TimePosted>
 
               <ActionBar tweet={tweet} />
             </RestOfTweetWrap>
@@ -44,16 +48,18 @@ const Tweet = ({ tweet, feedLoadStatus }) => {
 };
 
 const Wrapper = styled.div`
-  margin: 5px;
+  padding: 8px 20px;
 `;
 
 const TweetWrapper = styled.div`
   display: flex;
+  padding: 8px 0;
 `;
 
 const RestOfTweetWrap = styled.div`
   width: 100%;
   margin-left: 16px;
+  line-height: 1.5;
 `;
 
 const UserInfo = styled.div`
@@ -72,17 +78,18 @@ const TweetContent = styled.div`
 
 const TweeterInfo = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
 `;
 
 const DisplayName = styled.h1``;
 
-const Handle = styled.span``;
+const Handle = styled.span`
+  margin-left: 12px;
+  color: gray;
+`;
 
-const TimePosted = styled.span``;
-
-const Status = styled.p``;
+const Status = styled.p`
+  margin-bottom: 6px;
+`;
 
 const TweetPicture = styled.img`
   max-width: 100%;
@@ -92,7 +99,6 @@ const TweetPicture = styled.img`
 const Divider = styled.div`
   height: 2px;
   background-color: lightgray;
-  margin-bottom: 20px;
 `;
 
 export default Tweet;
