@@ -30,10 +30,10 @@ const Tweet = ({ tweet, feedLoadStatus }) => {
                     alt={`tweet picture`}
                   />
                 )}
-
-                <TimePosted> {tweet.timestamp}</TimePosted>
               </TweetContent>
-              <ActionBar />
+              <TimePosted> {tweet.timestamp}</TimePosted>
+
+              <ActionBar tweet={tweet} />
             </RestOfTweetWrap>
           </TweetWrapper>
         </>
@@ -66,7 +66,9 @@ const ProfilePicture = styled.img`
   width: 50px;
 `;
 
-const TweetContent = styled.div``;
+const TweetContent = styled.div`
+  width: 100%;
+`;
 
 const TweeterInfo = styled.div`
   display: flex;

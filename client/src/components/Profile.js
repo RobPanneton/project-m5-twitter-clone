@@ -79,7 +79,9 @@ const Profile = () => {
   );
 };
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  overflow: hidden;
+`;
 
 const ProfileUserInfo = styled.div`
   position: relative;

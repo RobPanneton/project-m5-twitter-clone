@@ -14,7 +14,6 @@ const Feed = () => {
 
   useEffect(() => {
     const ac = new AbortController();
-    // if (status === "loaded") {
     fetch(`/api/me/home-feed`)
       .then((res) => res.json())
       .then((data) => {
@@ -23,7 +22,6 @@ const Feed = () => {
         setTweetsById(data.tweetsById);
         setFeedLoadStatus("loaded");
       });
-    // }
 
     return () => {
       ac.abort();
@@ -34,12 +32,12 @@ const Feed = () => {
     <Wrapper>
       {/* {feedLoadStatus === "loading" && <Spinner />} */}
       {feedLoadStatus === "loaded" &&
-        tweetIds?.map((ID) => {
+        tweetIds?.map((Id) => {
           return (
             <Tweet
-              key={ID}
+              key={Id}
               feedLoadStatus={feedLoadStatus}
-              tweet={tweetsById[ID]}
+              tweet={tweetsById[Id]}
             />
           );
         })}

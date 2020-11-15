@@ -6,12 +6,12 @@ import PoppingCircle from "./PoppingCircle";
 
 const PARTICLE_COLORS = ["#e53935", "#1e88e5", "#43a047", "#fdd835", "#fb8c00"];
 
-const LikeButton = ({ size = 40 }) => {
+const LikeButton = ({ size = 40, isLiked }) => {
   const heartSize = size * 0.6;
 
   return (
     <Wrapper style={{ width: size, height: size }}>
-      <Heart width={heartSize} />
+      <Heart width={heartSize} isToggled={isLiked} />
     </Wrapper>
   );
 };
