@@ -5,7 +5,9 @@ import Tweet from "./Tweet";
 import { Spinner } from "./Spinner";
 
 const Feed = () => {
-  const { currentUser, status } = useContext(CurrentUserContext);
+  const { currentUser, status, executeTweet, setExecuteTweet } = useContext(
+    CurrentUserContext
+  );
 
   const [feed, setFeed] = useState();
   const [tweetIds, setTweetIds] = useState();
@@ -26,7 +28,7 @@ const Feed = () => {
     return () => {
       ac.abort();
     };
-  }, []);
+  }, [executeTweet]);
 
   return (
     <Wrapper>

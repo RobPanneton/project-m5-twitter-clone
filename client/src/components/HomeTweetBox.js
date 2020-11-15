@@ -4,7 +4,9 @@ import { CurrentUserContext } from "../CurrentUserContext";
 import { COLORS } from "../constants";
 
 const HomeTweetBox = () => {
-  const { currentUser, status, setSentTweet } = useContext(CurrentUserContext);
+  const { currentUser, status, executeTweet, setExecuteTweet } = useContext(
+    CurrentUserContext
+  );
 
   const [value, setValue] = useState("");
 
@@ -19,6 +21,8 @@ const HomeTweetBox = () => {
       body: JSON.stringify({
         status: value,
       }),
+    }).then(() => {
+      setExecuteTweet(executeTweet + 1);
     });
 
     setValue("");

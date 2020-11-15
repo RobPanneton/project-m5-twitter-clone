@@ -5,6 +5,7 @@ export const CurrentUserContext = createContext();
 export const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [status, setStatus] = useState("loading");
+  const [executeTweet, setExecuteTweet] = useState(0);
 
   useEffect(() => {
     const ac = new AbortController();
@@ -20,7 +21,9 @@ export const CurrentUserProvider = ({ children }) => {
   }, []);
 
   return (
-    <CurrentUserContext.Provider value={{ currentUser, status, setStatus }}>
+    <CurrentUserContext.Provider
+      value={{ currentUser, status, setStatus, executeTweet, setExecuteTweet }}
+    >
       {children}
     </CurrentUserContext.Provider>
   );

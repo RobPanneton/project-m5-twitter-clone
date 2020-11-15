@@ -6,7 +6,7 @@ import ActionBar from "./ActionBar.js";
 import moment from "moment";
 
 const Tweet = ({ tweet, feedLoadStatus }) => {
-  const tweetTimeStamp = moment(tweet.timestamp).format("MMM Do");
+  const tweetTimeStamp = moment(tweet?.timestamp).format("MMM Do");
 
   return (
     <Wrapper>
@@ -14,24 +14,24 @@ const Tweet = ({ tweet, feedLoadStatus }) => {
         <>
           <TweetWrapper>
             <ProfilePicture
-              src={tweet.author.avatarSrc}
-              alt={`${tweet.handle}'s profile photo`}
+              src={tweet?.author.avatarSrc}
+              alt={`${tweet?.handle}'s profile photo`}
             />
             <RestOfTweetWrap>
               <UserInfo>
                 <TweeterInfo>
-                  <DisplayName>{tweet.author.displayName}</DisplayName>
+                  <DisplayName>{tweet?.author.displayName}</DisplayName>
                   <Handle>
-                    @{tweet.author.handle} ● {tweetTimeStamp}
+                    @{tweet?.author.handle} ● {tweetTimeStamp}
                   </Handle>
                 </TweeterInfo>
               </UserInfo>
               <TweetContent>
-                <Status>{tweet.status}</Status>
+                <Status>{tweet?.status}</Status>
 
-                {tweet.media[0]?.url && (
+                {tweet?.media[0]?.url && (
                   <TweetPicture
-                    src={tweet.media[0].url}
+                    src={tweet?.media[0].url}
                     alt={`tweet picture`}
                   />
                 )}
