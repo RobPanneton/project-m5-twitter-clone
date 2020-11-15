@@ -50,7 +50,9 @@ const TweetDetails = () => {
           </UserInfo>
           <TweetContent>
             <Status>{tweet.status}</Status>
-            <TweetPicture src={tweet.media[0]?.url} alt={`tweet picture`} />
+            {tweet.media[0]?.url && (
+              <TweetPicture src={tweet.media[0]?.url} alt={`tweet picture`} />
+            )}
           </TweetContent>
           <TimePosted> {tweetTimeStamp} ● critter web app</TimePosted>
 

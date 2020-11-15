@@ -14,13 +14,14 @@ const ActionBar = ({ tweet }) => {
     tweet?.numRetweets
   );
 
-  const handleLikeClick = async (id) => {
+  const handleLikeClick = async (e) => {
+    e.stopPropagation();
     const incOrDec = optimisticLike ? -1 : +1;
 
     setOptimisticLike(!optimisticLike);
     setOptimisticNumLikes(optimisticNumLikes + incOrDec);
 
-    await fetch(`/api/tweet/${id}/like`, {
+    await fetch(`/api/tweet/${tweet?.id}/like`, {
       method: "PUT",
       headers: {
         Accept: "application/json",
@@ -33,7 +34,9 @@ const ActionBar = ({ tweet }) => {
     });
   };
 
-  const handleRetweetClick = async (id) => {
+  const handleRetweetClick = async (e) => {
+    e.stopPropagation();
+
     const incOrDec = optimisticRetweet ? -1 : +1;
 
     console.log(optimisticRetweet);
@@ -48,8 +51,8 @@ const ActionBar = ({ tweet }) => {
         <TweetActionIcon kind="reply" />
       </Action>
       <Action
-        onClick={() => {
-          handleRetweetClick(tweet.id);
+        onClick={(e) => {
+          handleRetweetClick(e);
         }}
         color="rgb(23, 191, 99)"
         size={40}
@@ -63,8 +66,8 @@ const ActionBar = ({ tweet }) => {
         )}
       </Action>
       <Action
-        onClick={() => {
-          handleLikeClick(tweet.id);
+        onClick={(e) => {
+          handleLikeClick(e);
         }}
         color="rgb(224, 36, 94)"
         size={40}

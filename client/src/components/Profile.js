@@ -149,7 +149,6 @@ const Following = styled.p`
 
 const TabContainer = styled.div`
   position: relative;
-  left: 36px;
   top: -90px;
   width: 100%;
   display: flex;
@@ -162,17 +161,14 @@ const Tab = styled.div`
   width: 100%;
   border-bottom: 1px solid gray;
   font-weight: 600;
-
   &:hover {
     border-bottom: 1px solid ${COLORS.primary};
     color: ${COLORS.primary};
   }
-
   &:focus {
     color: ${COLORS.primary};
     border-bottom: 1px solid ${COLORS.primary};
   }
-
   &.active {
     color: ${COLORS.primary};
     border-bottom: 1px solid ${COLORS.primary};

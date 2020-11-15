@@ -18,11 +18,22 @@ const Tweet = ({ tweet, feedLoadStatus }) => {
     history.push(`/${tweet.author.handle}`);
   };
 
+  const handleProfileEnter = (e) => {
+    e.stopPropagation();
+    if (e.key === "Enter") {
+      history.push(`/${tweet.author.handle}`);
+    }
+  };
+
   const handleTweetClick = (e) => {
-    console.log(tweet);
-    console.log(tweet.retweetFrom.displayName);
-    console.log(tweet.isRetweeted);
-    // history.push(`/tweet/${tweet.id}`);
+    history.push(`/tweet/${tweet.id}`);
+  };
+  const handleTweetEnter = (e) => {
+    console.log(e);
+    console.log(e.key);
+    if (e.key === "Enter") {
+      history.push(`/tweet/${tweet.id}`);
+    }
   };
 
   return (
@@ -30,6 +41,10 @@ const Tweet = ({ tweet, feedLoadStatus }) => {
       onClick={(e) => {
         handleTweetClick(e);
       }}
+      onKeyDown={(e) => {
+        handleTweetEnter(e);
+      }}
+      tabIndex={0}
     >
       {feedLoadStatus === "loaded" && (
         <>
@@ -51,6 +66,10 @@ const Tweet = ({ tweet, feedLoadStatus }) => {
                     onClick={(e) => {
                       handleProfileClick(e);
                     }}
+                    onKeyDown={(e) => {
+                      handleProfileEnter(e);
+                    }}
+                    tabIndex={0}
                   >
                     {tweet?.author.displayName}
                   </DisplayName>
