@@ -87,7 +87,7 @@ const Wrapper = styled.div``;
 const ProfileUserInfo = styled.div`
   position: relative;
   left: 36px;
-  top: -100px;
+  /* top: -100px; */
   display: flex;
   flex-direction: column;
 `;

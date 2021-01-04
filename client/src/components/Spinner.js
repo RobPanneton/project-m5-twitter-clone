@@ -14,7 +14,7 @@ export const Spinner = () => {
 
 const Wrapper = styled.div`
   padding: 50px 0;
-  width: 100%;
+  width: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;

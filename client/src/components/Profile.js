@@ -87,12 +87,13 @@ const Profile = () => {
 
 const Wrapper = styled.div`
   overflow: hidden;
+  position: relative;
 `;
 
 const ProfileUserInfo = styled.div`
   position: relative;
   left: 36px;
-  top: -100px;
+  padding-top: 100px;
   display: flex;
   flex-direction: column;
 `;
@@ -103,9 +104,9 @@ const ProfilePicture = styled.img`
   border-radius: 50%;
   height: 200px;
   width: 200px;
-  position: relative;
+  position: absolute;
   left: 36px;
-  top: -100px;
+  top: 200px;
   border: 4px solid white;
 `;
 
@@ -155,7 +156,6 @@ const Following = styled.p`
 
 const TabContainer = styled.div`
   position: relative;
-  top: -90px;
   width: 100%;
   display: flex;
   justify-content: space-between;

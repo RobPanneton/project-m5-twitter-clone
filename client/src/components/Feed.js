@@ -70,6 +70,8 @@ const Feed = () => {
   );
 };
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  padding-top: 12px;
+`;
 
 export default Feed;
