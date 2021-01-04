@@ -127,10 +127,14 @@ const Handle = styled.p`
   color: gray;
 `;
 
-const Bio = styled.p``;
+const Bio = styled.p`
+  padding: 14px 0;
+  font-weight: 500;
+`;
 
 const LocationAndJoined = styled.div`
   display: flex;
+  color: #808080;
 `;
 
 const Location = styled.div`
@@ -140,6 +144,7 @@ const Location = styled.div`
 
 const Joined = styled.div`
   display: flex;
+  padding-left: 24px;
 `;
 
 const LocJoinInfo = styled.p`
@@ -148,6 +153,7 @@ const LocJoinInfo = styled.p`
 
 const FollowingAndFollowers = styled.div`
   display: flex;
+  padding-top: 14px;
 `;
 
 const Following = styled.p`

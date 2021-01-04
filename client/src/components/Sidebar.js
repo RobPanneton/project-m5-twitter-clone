@@ -41,6 +41,11 @@ const Sidebar = () => {
           <NavItem>Bookmarks</NavItem>
         </NavigLink>
       </NavDiv>
+      <MeowDiv>
+        <MeowLink to={"/"}>
+          <MeowItem>Meow</MeowItem>
+        </MeowLink>
+      </MeowDiv>
     </NavWrapper>
   );
 };
@@ -88,6 +93,30 @@ const NavigLink = styled(NavLink)`
 
 const NavItem = styled.p`
   margin-left: 10px;
+  font-weight: 800;
+`;
+
+const MeowDiv = styled(NavDiv)`
+  margin-top: 12px;
+`;
+
+const MeowLink = styled(NavigLink)`
+  background-color: ${COLORS.primary};
+  justify-content: center;
+  text-align: center;
+
+  &:hover {
+    border: none;
+  }
+`;
+
+const MeowItem = styled(NavItem)`
+  color: white;
+  margin-left: 0px;
+  font-weight: 600;
+  &:hover {
+    font-weight: 800;
+  }
 `;
 
 export default Sidebar;
