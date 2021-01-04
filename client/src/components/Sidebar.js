@@ -47,10 +47,11 @@ const Sidebar = () => {
 
 const NavWrapper = styled.div`
   position: fixed;
-
-  padding: 0;
+  height: 100%;
+  padding: 12px 9px;
   margin: 0;
   border: 0;
+  border-right: 2px solid lightgray;
 `;
 
 const NavDiv = styled.div`
