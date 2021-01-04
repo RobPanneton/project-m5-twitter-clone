@@ -6,7 +6,7 @@ export default createGlobalStyle`
   *:after {
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
-	font-family: sans-serif;
+	font-family: 'Montserrat', sans-serif;
   }
 
   html, body, div, span, applet, object, iframe,

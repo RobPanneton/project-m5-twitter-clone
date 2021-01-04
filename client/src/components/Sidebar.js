@@ -65,7 +65,6 @@ const NavDiv = styled.div`
   margin: 2px 0;
 `;
 
-const NavImg = styled.img``;
 const CatLink = styled(NavLink)``;
 
 const NavigLink = styled(NavLink)`
@@ -78,12 +77,12 @@ const NavigLink = styled(NavLink)`
   font-weight: 600;
 
   &:hover {
-    border: 1px solid ${COLORS.primary};
+    color: ${COLORS.primary};
+    background-color: whitesmoke;
   }
 
   &:focus {
     color: ${COLORS.primary};
-    border: 1px solid ${COLORS.primary};
   }
 
   &.active {
@@ -107,6 +106,8 @@ const MeowLink = styled(NavigLink)`
 
   &:hover {
     border: none;
+    color: white;
+    background-color: ${COLORS.primary};
   }
 `;
 
