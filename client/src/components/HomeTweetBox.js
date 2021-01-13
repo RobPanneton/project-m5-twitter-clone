@@ -190,6 +190,10 @@ const SendButton = styled.div`
     cursor: not-allowed;
     opacity: 0.6;
   }
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export default HomeTweetBox;

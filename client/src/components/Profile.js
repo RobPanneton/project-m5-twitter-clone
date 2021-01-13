@@ -88,7 +88,7 @@ const Profile = () => {
 const Wrapper = styled.div`
   overflow: hidden;
   position: relative;
-  /* padding-right: 1px; */
+  padding-right: 0.25px;
 `;
 
 const ProfileUserInfo = styled.div`
