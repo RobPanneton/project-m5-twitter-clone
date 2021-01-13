@@ -93,7 +93,7 @@ const Wrapper = styled.div`
 
 const NumDisplay = styled.span`
   position: absolute;
-  left: 40px;
+  left: 44px;
 `;
 
 export default ActionBar;

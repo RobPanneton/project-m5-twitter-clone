@@ -4,9 +4,9 @@ const users = {
     displayName: "Palmerston",
     avatarSrc: "/assets/diplomog-avatar.jpg",
     bannerSrc: "/assets/diplomog-banner.jpeg",
-    location: "Whitehall",
+    location: "Whitehall, London",
     url: "http://fco.gov.uk",
-    joined: "2016-02-02T12:00",
+    joined: "2016-02-02",
     bio: "Best friends with @treasurymog.",
     followingIds: ["treasurymog"],
     followerIds: ["treasurymog"],
@@ -19,7 +19,7 @@ const users = {
     bannerSrc: "/assets/treasurymog-banner.jpeg",
     location: "Whitehall, London",
     url: undefined,
-    joined: "2016-10-12T12:00",
+    joined: "2016-10-12",
     bio:
       "I live and work at the Treasury as a mouser but I also have a paw in the finances. Here to help lighten up the political world. Unofficial.",
     followingIds: ["diplomog", "giantcat9"],
@@ -29,13 +29,11 @@ const users = {
   giantcat9: {
     handle: "giantcat9",
     displayName: "Giant Military Cats",
-    avatarSrc:
-      "https://pbs.twimg.com/profile_images/1203323662591504384/GwxdsfNA_400x400.jpg",
-    bannerSrc:
-      "https://pbs.twimg.com/profile_banners/1168513974763171840/1604095267/1500x500",
-    location: undefined,
+    avatarSrc: "/assets/militarycat1.jpg",
+    bannerSrc: "/assets/militarycat-banner.jpg",
+    location: "Whitehall, London",
     url: undefined,
-    joined: "2019-09-01T18:00",
+    joined: "2019-09-01",
     bio:
       "Just giant cats with military hardware. \nInstagram: @giantmilitarycats",
     followingIds: ["treasurymog"],

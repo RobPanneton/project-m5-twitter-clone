@@ -88,6 +88,7 @@ const Profile = () => {
 const Wrapper = styled.div`
   overflow: hidden;
   position: relative;
+  /* padding-right: 1px; */
 `;
 
 const ProfileUserInfo = styled.div`
@@ -112,7 +113,7 @@ const ProfilePicture = styled.img`
 
 const BannerPhoto = styled.img`
   width: 100%;
-  max-height: 300px;
+  height: 300px;
 `;
 
 const NameAndHandle = styled.div`
